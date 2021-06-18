@@ -1,5 +1,5 @@
 {
-  "name": "realtime_chat_server",
+  "name": "messenger_server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
