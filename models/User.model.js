@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Requires username"],
       unique: [true, "Duplicate username"],
+      trim: true,
     },
     password: {
       type: String,
@@ -16,6 +17,7 @@ const userSchema = mongoose.Schema(
     displayname: {
       type: String,
       required: [true, "Requires displayname"],
+      trim: true,
     },
     isOnline: {
       type: Boolean,
@@ -31,10 +33,18 @@ const userSchema = mongoose.Schema(
     },
     phoneNumber: {
       type: String,
+      trim: true,
     },
   },
   { timestamps: true }
 );
+
+userSchema.set("toJSON", {
+  transform: function (doc, ret, options) {
+    delete ret.password;
+    return ret;
+  },
+});
 
 userSchema.pre("save", function (next) {
   const user = this;
@@ -47,6 +57,18 @@ userSchema.pre("save", function (next) {
     user.password = hash;
     next();
   });
+});
+
+userSchema.pre("findOneAndUpdate", function (next) {
+  const update = { ...this.getUpdate() };
+
+  if (update.password) {
+    const hashPassword = bcrypt.hashSync(update.password, 10);
+
+    update.password = hashPassword;
+    this.setUpdate(update);
+  }
+  next();
 });
 
 module.exports = mongoose.model("User", userSchema, "User");
