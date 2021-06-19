@@ -8,6 +8,8 @@ const {
   getAllUsers,
   createNewUser,
   getUserById,
+  editUser,
+  deleteUser,
 } = require("../controllers/user.controller");
 
 router
@@ -15,6 +17,10 @@ router
   .get(asyncMiddleware(getAllUsers))
   .post(asyncMiddleware(createNewUser));
 
-router.route("/:userId").get(asyncMiddleware(getUserById));
+router
+  .route("/:userId")
+  .get(asyncMiddleware(getUserById))
+  .patch(asyncMiddleware(editUser))
+  .delete(asyncMiddleware(deleteUser));
 
 module.exports = router;
