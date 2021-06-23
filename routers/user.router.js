@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const asyncMiddleware = require("../middlewares/async.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 const {
   getAllUsers,
@@ -11,6 +12,8 @@ const {
   editUser,
   deleteUser,
 } = require("../controllers/user.controller");
+
+router.use(authMiddleware);
 
 router
   .route("")
