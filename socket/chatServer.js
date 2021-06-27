@@ -7,6 +7,7 @@ module.exports = {
       cors: {
         origin: "*",
       },
+      transports: ["polling"],
     });
 
     chatServer.on("connection", (socket) => {
