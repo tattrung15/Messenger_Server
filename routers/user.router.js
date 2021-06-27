@@ -13,7 +13,7 @@ const {
   deleteUser,
 } = require("../controllers/user.controller");
 
-router.use(authMiddleware);
+router.use(asyncMiddleware(authMiddleware));
 
 router
   .route("")

@@ -14,11 +14,14 @@ const createAccountAdmin = async () => {
       email: "buitrungt@gmail.com",
       phoneNumber: "0396500575",
     });
-    user.save();
+    await user.save();
 
     console.log(
       `Created account admin with username: ${configuration().ADMIN_USERNAME}`
     );
+    process.exit(0);
+  } else {
+    process.exit(0);
   }
 };
 
