@@ -1,9 +1,6 @@
 const configuration = require("./configs/configuration");
-const connectDB = require("./configs/database");
 
 const User = require("./models/User.model");
-
-connectDB();
 
 const createAccountAdmin = async () => {
   if ((await User.countDocuments()) === 0) {
@@ -19,10 +16,7 @@ const createAccountAdmin = async () => {
     console.log(
       `Created account admin with username: ${configuration().ADMIN_USERNAME}`
     );
-    process.exit(0);
-  } else {
-    process.exit(0);
   }
 };
 
-createAccountAdmin();
+module.exports = createAccountAdmin;
