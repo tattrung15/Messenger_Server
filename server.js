@@ -3,7 +3,8 @@ const configuration = require("./configs/configuration");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const io = require("socket.io");
+
+const chatServer = require("./socket/chatServer");
 
 const connectDB = require("./configs/database");
 const router = require("./routers");
@@ -24,6 +25,8 @@ const PORT = configuration().port;
 const server = app.listen(PORT, () => {
   console.log(`Server is running at port: ${PORT}`);
 });
+
+chatServer.listen(server);
 
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Error: ${err.message}`);
