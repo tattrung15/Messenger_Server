@@ -35,3 +35,32 @@ module.exports.login = async (req, res) => {
     displayname: user.displayname,
   });
 };
+
+module.exports.validateToken = async (req, res) => {
+  const token = req.body.jwt;
+
+  const user = jwt.verify(token, configuration().JWT_SECRET);
+
+  const currentUser = await User.findOne({ username: user.username });
+
+  if (!currentUser) {
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json(new ResponseEntity(HttpStatus.UNAUTHORIZED, "Invalid token"));
+  }
+
+  const newToken = jwt.sign(
+    { username: currentUser.username },
+    configuration().JWT_SECRET,
+    {
+      expiresIn: "1d",
+    }
+  );
+
+  res.status(HttpStatus.OK).json({
+    jwt: newToken,
+    userId: currentUser._id,
+    username: currentUser.username,
+    displayname: currentUser.displayname,
+  });
+};
