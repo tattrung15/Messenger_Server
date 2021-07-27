@@ -5,7 +5,7 @@ const configuration = require("../configs/configuration");
 
 const User = require("../models/User.model");
 
-const { HttpStatus, ResponseEntity } = require("../dto/dataResponse");
+const { HttpStatus, ResponseEntity, Message } = require("../dto/dataResponse");
 
 module.exports.login = async (req, res) => {
   const { username, password } = req.body;
@@ -34,6 +34,16 @@ module.exports.login = async (req, res) => {
     username,
     displayname: user.displayname,
   });
+};
+
+module.exports.signUp = async (req, res) => {
+  const user = new User(req.body);
+
+  const newUser = await user.save();
+
+  res
+    .status(HttpStatus.CREATED)
+    .json(new ResponseEntity(HttpStatus.CREATED, Message.SUCCESS, newUser));
 };
 
 module.exports.validateToken = async (req, res) => {
