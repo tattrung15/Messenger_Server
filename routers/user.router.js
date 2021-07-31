@@ -13,17 +13,17 @@ const {
   deleteUser,
 } = require("../controllers/user.controller");
 
-router.use(asyncMiddleware(authMiddleware));
+// router.use(asyncMiddleware(authMiddleware));
 
-router
-  .route("")
-  .get(asyncMiddleware(getAllUsers))
-  .post(asyncMiddleware(createNewUser));
+// router
+//   .route("")
+//   .get(asyncMiddleware(getAllUsers))
+//   .post(asyncMiddleware(createNewUser));
 
 router
   .route("/:userId")
-  .get(asyncMiddleware(getUserById))
-  .patch(asyncMiddleware(editUser))
-  .delete(asyncMiddleware(deleteUser));
+  .get(asyncMiddleware(authMiddleware), asyncMiddleware(getUserById))
+  .patch(asyncMiddleware(authMiddleware), asyncMiddleware(editUser))
+  .delete(asyncMiddleware(authMiddleware), asyncMiddleware(deleteUser));
 
 module.exports = router;
