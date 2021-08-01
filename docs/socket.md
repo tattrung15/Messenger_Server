@@ -8,7 +8,8 @@
 
 - [Kết nối socket](#kết-nối-socket)
 - [Tạo cuộc trò chuyện](#tạo-cuộc-trò-chuyện)
-- [Ngắt kết nối](#khi-có-người-ngắt-kết-nối-sẽ-có-sự-kiện-gửi-từ-server-đến-tất-cả-người-dùng)
+- [Ngắt kết nối](#ngắt-kết-nối)
+- [Join room](#join-room)
 - [Gửi tin nhắn](#gửi-tin-nhắn)
 
 ### Kết nối socket
@@ -25,7 +26,7 @@ const socket = io("http://localhost:3000", {
 });
 ```
 
-#### Khi kết nối thành công sẽ có sự kiện được gửi đến server tới người hiện tại
+#### Khi kết nối thành công sẽ có sự kiện được gửi từ server tới người hiện tại
 
 Sự kiện: `server-send-current-user`
 
@@ -35,7 +36,7 @@ Mô tả: Nhận thông tin của người dùng hiện tại
 socket.on("server-send-current-user", (data) => {});
 ```
 
-#### Khi kết nối thất bại sẽ có sự kiện được gửi đến server tới người hiện tại
+#### Khi kết nối thất bại sẽ có sự kiện được gửi từ server tới người hiện tại
 
 Sự kiện: `connect_error`
 
@@ -75,17 +76,17 @@ Mô tả: Nhận thông tin của người dùng hiện tại
 socket.on("server-send-conversations", (data) => {});
 ```
 
-### Khi có người ngắt kết nối sẽ có sự kiện gửi từ server đến tất cả người dùng
+### Ngắt kết nối
 
 Sự kiện: `server-send-users-online`
 
-Mô tả: Nhận thông tin các người dùng đang online
+Mô tả: Khi có người ngắt kết nối sẽ có sự kiện gửi từ server đến tất cả người dùng. Nhận thông tin các người dùng đang online
 
 ```Javascript
 socket.on("server-send-users-online", (data) => {});
 ```
 
-### Trước khi gửi tin nhắn cần gửi sự kiện join room đến server
+### Join room
 
 Sự kiện: `client-join-room`
 
