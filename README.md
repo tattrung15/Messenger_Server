@@ -31,11 +31,11 @@ Server is running
 
 ### API Documentation
 
-/docs/Messenger_Chat_Server.postman_collection.json
+[API Documentation (Postman)](https://github.com/tattrung15/Messenger_Server/blob/develop/docs/Messenger_Chat_Server.postman_collection.json)
 
 ### Socket Documentation
 
-[Socket Documentation](socket.md)
+[Socket Documentation](https://github.com/tattrung15/Messenger_Server/blob/develop/docs/socket.md)
 
 #### Event socket Enum
 

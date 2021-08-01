@@ -4,6 +4,13 @@
 
 [Socket Event Enum](https://github.com/tattrung15/Messenger_Server/blob/develop/socket/constants/index.js)
 
+## Liên kết nhanh
+
+- [Kết nối socket](#kết-nối-socket)
+- [Tạo cuộc trò chuyện](#tạo-cuộc-trò-chuyện)
+- [Ngắt kết nối](#khi-có-người-ngắt-kết-nối-sẽ-có-sự-kiện-gửi-từ-server-đến-tất-cả-người-dùng)
+- [Gửi tin nhắn](#gửi-tin-nhắn)
+
 ### Kết nối socket
 
 Thêm option xác thực bằng jwt
@@ -42,7 +49,7 @@ Mô tả: Người dùng tạo mới cuộc trò chuyện
 
 ```Javascript
 const conversation = {
-  typeConversation: enum, // enum["group", "private"]
+  typeConversation: String, // "group" or "private"
   title: String, // "HIT - Javascript"
   from: ObjectId, // "60d85c8f093d7e260c5b1c7c"
   to: ObjectId, // "60ff9c51fd4deb28bcefcf64"
@@ -79,7 +86,7 @@ Mô tả: Gửi conversationId lên server để join room chat
 
 ```Javascript
 socket.emit("client-join-room", {
-  roomId: ObjectId, // "6103d11b0b9979175cdc3325"
+  roomId: ObjectId, // conversationId: "6103d11b0b9979175cdc3325"
 });
 ```
 
