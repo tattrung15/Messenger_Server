@@ -24,7 +24,7 @@ const socket = io("http://localhost:3000", {
 });
 ```
 
-##### Khi kết nối thành công sẽ có sự kiện được gửi đến server tới người hiện tại
+#### Khi kết nối thành công sẽ có sự kiện được gửi đến server tới người hiện tại
 
 Sự kiện: `server-send-current-user`
 Mô tả: Nhận thông tin của người dùng hiện tại
@@ -33,7 +33,7 @@ Mô tả: Nhận thông tin của người dùng hiện tại
 socket.on("server-send-current-user", (data) => {});
 ```
 
-##### Khi kết nối thất bại sẽ có sự kiện được gửi đến server tới người hiện tại
+#### Khi kết nối thất bại sẽ có sự kiện được gửi đến server tới người hiện tại
 
 Sự kiện: `connect_error`
 Mô tả: Nhập thông báo lỗi khi kết nối thất bại
@@ -61,7 +61,7 @@ socket.emit("client-create-conversation", conversation);
 - Tạo cuộc trò chuyện nhóm thì thuộc tính `to` để `null`, `from` là `ObjectId` của người tạo nhóm
 - Tạo cuộc trò chuyện thất bại sẽ có sự kiện `error` được gửi từ server
 
-##### Khi tạo thành công sẽ có sự kiện gửi từ server đến tất cả người dùng
+#### Khi tạo thành công sẽ có sự kiện gửi từ server đến tất cả người dùng
 
 Sự kiện: `server-send-conversations`
 Mô tả: Nhận thông tin của người dùng hiện tại

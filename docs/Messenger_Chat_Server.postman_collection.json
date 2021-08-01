@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "51768d9e-ba45-479c-b6b6-4af1008d0fb1",
-    "name": "Realtime Chat Server",
+    "name": "Messenger Chat Server",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
