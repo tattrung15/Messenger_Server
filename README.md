@@ -1,11 +1,11 @@
 ### Realtime chat server - NodeJS + MongoDB
 
-##### Requirements
+#### Requirements
 
 Install NodeJS
 Install MongoDB Server
 
-##### Installations
+#### Installations
 
 Clone project
 
@@ -20,10 +20,23 @@ npm install
 ```
 
 Create `.env` file and config
+
 Run server
 
 ```bash
 npm run dev
 ```
 
-Open address in browser: [http://localhost:3000](http://localhost:3000).
+Server is running
+
+### API Documentation
+
+/docs/Messenger_Chat_Server.postman_collection.json
+
+### Socket Documentation
+
+[Socket Documentation](socket.md)
+
+#### Event socket Enum
+
+[Socket Event Enum](https://github.com/tattrung15/Messenger_Server/blob/develop/socket/constants/index.js)

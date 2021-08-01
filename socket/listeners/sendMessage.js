@@ -45,7 +45,7 @@ module.exports = (io, socket) => async (data) => {
     const dataMessage = {
       fromUser: user,
       conversation: conversation,
-      messageModel,
+      message: messageModel,
     };
 
     socket.broadcast

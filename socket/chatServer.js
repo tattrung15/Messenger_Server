@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const socketIO = require("socket.io");
-const xss = require("xss");
 
 const configuration = require("../configs/configuration");
 

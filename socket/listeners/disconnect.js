@@ -1,7 +1,6 @@
 const User = require("../../models/User.model");
 
-// socket event constants
-const { SocketEvent, SocketErrorMessage } = require("../constants");
+const { SocketEvent } = require("../constants");
 
 module.exports = (io, socket) => async () => {
   try {

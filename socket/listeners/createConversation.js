@@ -1,6 +1,5 @@
 const Conversation = require("../../models/Conversation.model");
 
-// socket event constants
 const { SocketEvent, SocketErrorMessage } = require("../constants");
 
 module.exports = (io, socket) => async (data) => {
