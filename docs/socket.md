@@ -14,6 +14,7 @@
 ### Kết nối socket
 
 Thêm option xác thực bằng jwt
+
 Mô tả: Khởi tạo kết nối socket đến server
 
 ```Javascript
@@ -27,6 +28,7 @@ const socket = io("http://localhost:3000", {
 #### Khi kết nối thành công sẽ có sự kiện được gửi đến server tới người hiện tại
 
 Sự kiện: `server-send-current-user`
+
 Mô tả: Nhận thông tin của người dùng hiện tại
 
 ```Javascript
@@ -36,6 +38,7 @@ socket.on("server-send-current-user", (data) => {});
 #### Khi kết nối thất bại sẽ có sự kiện được gửi đến server tới người hiện tại
 
 Sự kiện: `connect_error`
+
 Mô tả: Nhập thông báo lỗi khi kết nối thất bại
 
 ```Javascript
@@ -45,6 +48,7 @@ socket.on("connect_error", (error) => {});
 ### Tạo cuộc trò chuyện
 
 Sự kiện: `client-create-conversation`
+
 Mô tả: Người dùng tạo mới cuộc trò chuyện
 
 ```Javascript
@@ -64,6 +68,7 @@ socket.emit("client-create-conversation", conversation);
 #### Khi tạo thành công sẽ có sự kiện gửi từ server đến tất cả người dùng
 
 Sự kiện: `server-send-conversations`
+
 Mô tả: Nhận thông tin của người dùng hiện tại
 
 ```Javascript
@@ -73,6 +78,7 @@ socket.on("server-send-conversations", (data) => {});
 ### Khi có người ngắt kết nối sẽ có sự kiện gửi từ server đến tất cả người dùng
 
 Sự kiện: `server-send-users-online`
+
 Mô tả: Nhận thông tin các người dùng đang online
 
 ```Javascript
@@ -82,6 +88,7 @@ socket.on("server-send-users-online", (data) => {});
 ### Trước khi gửi tin nhắn cần gửi sự kiện join room đến server
 
 Sự kiện: `client-join-room`
+
 Mô tả: Gửi conversationId lên server để join room chat
 
 ```Javascript
@@ -96,7 +103,9 @@ socket.emit("client-join-room", {
 ### Gửi tin nhắn
 
 Yêu cầu: join room
+
 Sự kiện: `client-send-message`
+
 Mô tả: Gửi tin nhắn trong room
 
 ```Javascript
