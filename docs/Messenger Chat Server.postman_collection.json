@@ -146,6 +146,40 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Message",
+      "item": [
+        {
+          "name": "Get Messages By Conversation",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer ",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/messages?conversationId=6103d11b0b9979175cdc3325&page=1",
+              "host": ["{{url}}"],
+              "path": ["api", "messages"],
+              "query": [
+                {
+                  "key": "conversationId",
+                  "value": "6103d11b0b9979175cdc3325"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "event": [
