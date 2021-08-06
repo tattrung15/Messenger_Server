@@ -7,6 +7,7 @@
 ## Liên kết nhanh
 
 - [Kết nối socket](#kết-nối-socket)
+- [Lấy các cuộc trò chuyện](#lấy-các-cuộc-trò-chuyện)
 - [Tạo cuộc trò chuyện](#tạo-cuộc-trò-chuyện)
 - [Ngắt kết nối](#ngắt-kết-nối)
 - [Join room](#join-room)
@@ -25,6 +26,20 @@ const socket = io("http://localhost:3000", {
     token: "jwt",
   },
 });
+```
+
+### Lấy các cuộc trò chuyện
+
+Yêu cầu: Gửi sự kiện `client-get-conversations` đến server. Sau khi gửi sẽ được server phản hồi sự kiện `server-send-conversations-of-user` nhận thông tin các cuộc trò chuyện của người dùng
+
+```Javascript
+socket.emit("client-get-conversations");
+```
+
+Mô tả: Lấy danh sách cuộc trò chuyện hiện có của người dùng
+
+```Javascript
+socket.on("server-send-conversations-of-user", (data) => {});
 ```
 
 #### Khi kết nối thành công sẽ có sự kiện được gửi từ server tới người hiện tại
@@ -118,7 +133,7 @@ socket.emit("client-send-message", {
 });
 ```
 
-- Gửi tin nhắn thành công sẽ có sự kiện `server-send-message-to-author` được gửi từ server đến người gửi bao gồm thông tin của tin nhắn vừa gửi.
+- Gửi tin nhắn thành công sẽ có sự kiện `server-send-message-to-author` được gửi từ server đến người gửi bao gồm thông tin của tin nhắn vừa gửi
 - Và sự kiện `server-send-message` được gửi từ server đến mọi người trong room trừ người gửi
 - Gửi tin nhắn thất bại sẽ có sự kiện `error` được gửi từ server
 
@@ -134,6 +149,6 @@ socket.emit("client-leave-conversation", {
 });
 ```
 
-- Rời thành công sẽ có sự kiện `server-send-leave-conversation-to-user` được gửi từ server đến người dùng bao gồm thông tin của cuộc trò chuyện vừa rời.
+- Rời thành công sẽ có sự kiện `server-send-leave-conversation-to-user` được gửi từ server đến người dùng thông tin của người vừa rời
 - Và sự kiện `server-send-leave-conversation` được gửi từ server đến mọi người trong room trừ người gửi
 - Rời thất bại sẽ có sự kiện `error` được gửi từ server
