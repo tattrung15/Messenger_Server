@@ -58,6 +58,11 @@ module.exports.listen = (server) => {
     );
 
     socket.on(
+      SocketEvent.CLIENT_GET_CONVERSATIONS,
+      listeners.getConversation(io, socket)
+    );
+
+    socket.on(
       SocketEvent.CLIENT_SEND_MESSAGE,
       listeners.sendMessage(io, socket)
     );

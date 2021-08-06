@@ -34,13 +34,16 @@ module.exports = (io, socket) => async (data) => {
 
     await conversation.save();
 
-    socket.emit(SocketEvent.SV_SEND_LEAVE_CONVERSATION_TO_USER, conversation);
+    socket.emit(
+      SocketEvent.SV_SEND_LEAVE_CONVERSATION_TO_USER,
+      socket.currentUser
+    );
 
     const conversationId = socket.roomId || conversation._id;
 
     socket.broadcast
       .to(conversationId)
-      .emit(SocketEvent.SV_SEND_MESSAGE, dataMessage);
+      .emit(SocketEvent.SV_SEND_LEAVE_CONVERSATION, socket.currentUser);
   } catch (error) {
     console.log(error.message);
   }
