@@ -61,5 +61,10 @@ module.exports.listen = (server) => {
       SocketEvent.CLIENT_SEND_MESSAGE,
       listeners.sendMessage(io, socket)
     );
+
+    socket.on(
+      SocketEvent.CLIENT_LEAVE_CONVERSATION,
+      listeners.leaveConversation(io, socket)
+    );
   });
 };

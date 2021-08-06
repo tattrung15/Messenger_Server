@@ -1,8 +1,8 @@
 # Socket Documentation
 
-### Event socket Enum
+### Socket Events
 
-[Socket Event Enum](https://github.com/tattrung15/Messenger_Server/blob/develop/socket/constants/index.js)
+[Socket Events](https://github.com/tattrung15/Messenger_Server/blob/develop/socket/constants/index.js)
 
 ## Liên kết nhanh
 
@@ -11,6 +11,7 @@
 - [Ngắt kết nối](#ngắt-kết-nối)
 - [Join room](#join-room)
 - [Gửi tin nhắn](#gửi-tin-nhắn)
+- [Rời cuộc trò chuyện](#rời-cuộc-trò-chuyện)
 
 ### Kết nối socket
 
@@ -111,8 +112,8 @@ Mô tả: Gửi tin nhắn trong room
 
 ```Javascript
 socket.emit("client-send-message", {
-  conversationId: ObjectId, //"6103d11b0b9979175cdc3325"
-  fromUserId: ObjectId, //"60d85c8f093d7e260c5b1c7c"
+  conversationId: ObjectId, // "6103d11b0b9979175cdc3325"
+  fromUserId: ObjectId, // "60d85c8f093d7e260c5b1c7c"
   message: String,
 });
 ```
@@ -120,3 +121,19 @@ socket.emit("client-send-message", {
 - Gửi tin nhắn thành công sẽ có sự kiện `server-send-message-to-author` được gửi từ server đến người gửi bao gồm thông tin của tin nhắn vừa gửi.
 - Và sự kiện `server-send-message` được gửi từ server đến mọi người trong room trừ người gửi
 - Gửi tin nhắn thất bại sẽ có sự kiện `error` được gửi từ server
+
+### Rời cuộc trò chuyện
+
+Sự kiện: `client-leave-conversation`
+
+Mô tả: Người dùng rời khỏi cuộc trò chuyện
+
+```Javascript
+socket.emit("client-leave-conversation", {
+  roomId: ObjectId, // conversationId: "6103d11b0b9979175cdc3325"
+});
+```
+
+- Rời thành công sẽ có sự kiện `server-send-leave-conversation-to-user` được gửi từ server đến người dùng bao gồm thông tin của cuộc trò chuyện vừa rời.
+- Và sự kiện `server-send-leave-conversation` được gửi từ server đến mọi người trong room trừ người gửi
+- Rời thất bại sẽ có sự kiện `error` được gửi từ server
