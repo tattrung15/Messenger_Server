@@ -11,7 +11,7 @@ module.exports = (io, socket) => async (data) => {
     if (!conversation) {
       socket.emit(SocketEvent.ERROR, {
         message: SocketErrorMessage.JOIN_ROOM,
-        result: "Not found room",
+        result: "Not found conversation",
       });
 
       return;

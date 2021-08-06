@@ -4,7 +4,7 @@ const Conversation = require("../models/Conversation.model");
 const { ResponseEntity, HttpStatus, Message } = require("../dto/dataResponse");
 
 module.exports.getMessagesByConversation = async (req, res) => {
-  const perPage = 2;
+  const perPage = 20;
   const { conversationId } = req.query;
   const page = req.query.page >= 1 ? req.query.page : 1;
 

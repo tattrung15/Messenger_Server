@@ -32,12 +32,12 @@ Server is running
 
 ### API Documentation
 
-[API Documentation (Postman)](https://github.com/tattrung15/Messenger_Server/blob/develop/docs/Messenger_Chat_Server.postman_collection.json)
+[API Documentation (Postman)](https://github.com/tattrung15/Messenger_Server/blob/develop/docs/Messenger%20Chat%20Server.postman_collection.json)
 
 ### Socket Documentation
 
 [Socket Documentation](https://github.com/tattrung15/Messenger_Server/blob/develop/docs/socket.md)
 
-#### Event socket Enum
+#### Socket Events
 
-[Socket Event Enum](https://github.com/tattrung15/Messenger_Server/blob/develop/socket/constants/index.js)
+[Socket Events](https://github.com/tattrung15/Messenger_Server/blob/develop/socket/constants/index.js)
