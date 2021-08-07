@@ -12,6 +12,7 @@
 - [Ngắt kết nối](#ngắt-kết-nối)
 - [Join room](#join-room)
 - [Gửi tin nhắn](#gửi-tin-nhắn)
+- [Gửi file hoặc hình ảnh](#gửi-file-hoặc-hình-ảnh)
 - [Rời cuộc trò chuyện](#rời-cuộc-trò-chuyện)
 
 ### Kết nối socket
@@ -136,6 +137,34 @@ socket.emit("client-send-message", {
 - Gửi tin nhắn thành công sẽ có sự kiện `server-send-message-to-author` được gửi từ server đến người gửi bao gồm thông tin của tin nhắn vừa gửi
 - Và sự kiện `server-send-message` được gửi từ server đến mọi người trong room trừ người gửi
 - Gửi tin nhắn thất bại sẽ có sự kiện `error` được gửi từ server
+
+### Gửi file hoặc hình ảnh
+
+Yêu cầu: join room
+
+Sự kiện: `client-send-file`
+
+Mô tả: Gửi file hoặc hình ảnh
+
+```Javascript
+const file = {
+  conversationId: ObjectId, // "60d85c8f093d7e260c5b1c7c"
+  fromUserId: ObjectId, // "60d85c8f093d7e260c5b1c7c"
+  fileName: String, // "Trung.jpg"
+  dataBuffer: File,
+  fileType: String, // "image/jpeg"
+  fileSize: Number, // 230739
+};
+socket.emit("client-send-file", file);
+```
+
+- Gửi file thành công sẽ có sự kiện `server-send-file-to-author` được gửi từ server đến người gửi bao gồm thông tin của file vừa gửi
+- Và sự kiện `server-send-file` được gửi từ server đến mọi người trong room trừ người gửi
+- Gửi file thất bại sẽ có sự kiện `error` được gửi từ server
+
+**Chú ý:**
+
+- Kích thước tối đa của file gửi lên: 5MB (có thể tùy chỉnh trong file configs/configuration.js và option maxHttpBufferSize trong file socket/chatServer.js)
 
 ### Rời cuộc trò chuyện
 

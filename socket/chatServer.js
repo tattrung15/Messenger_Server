@@ -17,6 +17,7 @@ module.exports.listen = (server) => {
       origin: "*",
     },
     transports: ["polling"],
+    maxHttpBufferSize: 8e6,
   });
 
   // middleware auth
@@ -71,5 +72,7 @@ module.exports.listen = (server) => {
       SocketEvent.CLIENT_LEAVE_CONVERSATION,
       listeners.leaveConversation(io, socket)
     );
+
+    socket.on(SocketEvent.CLIENT_SEND_FILE, listeners.sendFile(io, socket));
   });
 };

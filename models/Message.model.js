@@ -27,6 +27,9 @@ const messageSchema = mongoose.Schema(
         type: String,
         required: [true, "Requires body"],
       },
+      fileName: {
+        type: String,
+      },
     },
   },
   { timestamps: true }
