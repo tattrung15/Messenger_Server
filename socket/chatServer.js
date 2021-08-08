@@ -44,7 +44,10 @@ module.exports.listen = (server) => {
       user.isOnline = true;
       await user.save();
 
+      const listUserOnline = await User.find({ isOnline: true });
+
       socket.emit(SocketEvent.SV_SEND_CURR_USER, user);
+      socket.emit(SocketEvent.SV_SEND_USERS_ONLINE, listUserOnline);
     } catch (error) {
       console.log(error.message);
     }

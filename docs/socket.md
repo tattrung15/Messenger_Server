@@ -29,6 +29,34 @@ const socket = io("http://localhost:3000", {
 });
 ```
 
+#### Khi kết nối thành công sẽ có 2 sự kiện được gửi từ server tới người hiện tại
+
+Sự kiện: `server-send-current-user`
+
+Mô tả: Nhận thông tin của người dùng hiện tại
+
+```Javascript
+socket.on("server-send-current-user", (data) => {});
+```
+
+Sự kiện: `server-send-users-online`
+
+Mô tả: Nhận thông tin danh sách người dùng đang online
+
+```Javascript
+socket.on("server-send-users-online", (data) => {});
+```
+
+#### Khi kết nối thất bại sẽ có sự kiện được gửi từ server tới người hiện tại
+
+Sự kiện: `connect_error`
+
+Mô tả: Nhập thông báo lỗi khi kết nối thất bại
+
+```Javascript
+socket.on("connect_error", (error) => {});
+```
+
 ### Lấy các cuộc trò chuyện
 
 Yêu cầu: Gửi sự kiện `client-get-conversations` đến server. Sau khi gửi sẽ được server phản hồi sự kiện `server-send-conversations-of-user` nhận thông tin các cuộc trò chuyện của người dùng
@@ -41,26 +69,6 @@ Mô tả: Lấy danh sách cuộc trò chuyện hiện có của người dùng
 
 ```Javascript
 socket.on("server-send-conversations-of-user", (data) => {});
-```
-
-#### Khi kết nối thành công sẽ có sự kiện được gửi từ server tới người hiện tại
-
-Sự kiện: `server-send-current-user`
-
-Mô tả: Nhận thông tin của người dùng hiện tại
-
-```Javascript
-socket.on("server-send-current-user", (data) => {});
-```
-
-#### Khi kết nối thất bại sẽ có sự kiện được gửi từ server tới người hiện tại
-
-Sự kiện: `connect_error`
-
-Mô tả: Nhập thông báo lỗi khi kết nối thất bại
-
-```Javascript
-socket.on("connect_error", (error) => {});
 ```
 
 ### Tạo cuộc trò chuyện
@@ -165,6 +173,7 @@ socket.emit("client-send-file", file);
 **Chú ý:**
 
 - Kích thước tối đa của file gửi lên: 5MB (có thể tùy chỉnh trong file configs/configuration.js và option maxHttpBufferSize trong file socket/chatServer.js)
+- Không cho phép upload file có định dạng `.dll` và `.exe`
 
 ### Rời cuộc trò chuyện
 
