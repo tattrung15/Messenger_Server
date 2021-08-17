@@ -9,11 +9,8 @@ const {
   getMessagesByConversation,
 } = require("../controllers/message.controller");
 
-router
-  .route("")
-  .get(
-    asyncMiddleware(authMiddleware),
-    asyncMiddleware(getMessagesByConversation)
-  );
+router.use(asyncMiddleware(authMiddleware));
+
+router.route("").get(asyncMiddleware(getMessagesByConversation));
 
 module.exports = router;
