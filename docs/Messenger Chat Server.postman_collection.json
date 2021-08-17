@@ -9,6 +9,25 @@
       "name": "User",
       "item": [
         {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer ",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/users",
+              "host": ["{{url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Get User By Id",
           "request": {
             "method": "GET",
