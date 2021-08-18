@@ -29,11 +29,11 @@ const socket = io("http://localhost:3000", {
 });
 ```
 
-#### Khi kết nối thành công sẽ có 2 sự kiện được gửi từ server tới người hiện tại
+#### Khi kết nối thành công sẽ có 2 sự kiện được gửi từ server
 
 Sự kiện: `server-send-current-user`
 
-Mô tả: Nhận thông tin của người dùng hiện tại
+Mô tả: Thông tin của người dùng hiện tại được gửi đến người dùng hiện tại
 
 ```Javascript
 socket.on("server-send-current-user", (data) => {});
@@ -41,13 +41,13 @@ socket.on("server-send-current-user", (data) => {});
 
 Sự kiện: `server-send-users-online`
 
-Mô tả: Nhận thông tin danh sách người dùng đang online
+Mô tả: Thông tin danh sách người dùng đang online được gửi đến tất cả người dùng
 
 ```Javascript
 socket.on("server-send-users-online", (data) => {});
 ```
 
-#### Khi kết nối thất bại sẽ có sự kiện được gửi từ server tới người hiện tại
+#### Khi kết nối thất bại sẽ có sự kiện được gửi từ server đến người hiện tại
 
 Sự kiện: `connect_error`
 
