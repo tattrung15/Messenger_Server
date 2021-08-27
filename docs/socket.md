@@ -91,6 +91,16 @@ socket.emit("client-create-conversation", conversation);
 - Tạo cuộc trò chuyện nhóm thì thuộc tính `to` để `null`, `from` là `ObjectId` của người tạo nhóm
 - Tạo cuộc trò chuyện thất bại sẽ có sự kiện `error` được gửi từ server
 
+#### Thành công thì có sự kiện `server-send-current-conversation` gửi từ server đến người dùng hiện tại
+
+Sự kiện: `server-send-conversations`
+
+Mô tả: Nhận thông tin của người dùng hiện tại
+
+```Javascript
+socket.on("server-send-conversations", (data) => {});
+```
+
 #### Khi tạo thành công sẽ có sự kiện gửi từ server đến tất cả người dùng
 
 Sự kiện: `server-send-conversations`
