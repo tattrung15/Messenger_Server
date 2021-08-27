@@ -15,21 +15,17 @@ module.exports = (io, socket) => async (data) => {
     });
 
     if (oldConversation) {
-      socket.emit(SocketEvent.ERROR, {
-        message: SocketErrorMessage.CREATE_CONVERSATION,
-        result: "Conversation has already exists",
+      socket.emit(SocketEvent.SV_SEND_CURR_CONVERSATION, oldConversation);
+    } else {
+      const newConversation = await Conversation.create({
+        typeConversation,
+        title,
+        from,
+        to,
+        members,
       });
-
-      return;
+      socket.emit(SocketEvent.SV_SEND_CURR_CONVERSATION, newConversation);
     }
-
-    await Conversation.create({
-      typeConversation,
-      title,
-      from,
-      to,
-      members,
-    });
 
     const conversations = await Conversation.find();
 
