@@ -1,6 +1,7 @@
 const Conversation = require("../../models/Conversation.model");
+const User = require("../../models/User.model");
 
-const { SocketEvent, SocketErrorMessage } = require("../constants");
+const { SocketEvent } = require("../constants");
 
 module.exports = (io, socket) => async (data) => {
   try {
@@ -28,6 +29,15 @@ module.exports = (io, socket) => async (data) => {
     }
 
     const conversations = await Conversation.find();
+
+    const users = await User.find({}, { _id: 1, displayname: 1 });
+
+    conversations.map((conversation) => {
+      conversation.members = users.filter(function (user) {
+        return this.indexOf(user._id) >= 0;
+      }, conversation.members);
+      return conversation;
+    });
 
     io.sockets.emit(SocketEvent.SV_SEND_CONVERSATIONS, conversations);
   } catch (error) {
