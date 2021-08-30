@@ -15,7 +15,7 @@ module.exports = (io, socket) => async () => {
 
     conversations.map((conversation) => {
       conversation.members = users.filter(function (user) {
-        return this.indexOf(user._id);
+        return this.indexOf(user._id) >= 0;
       }, conversation.members);
       return conversation;
     });
