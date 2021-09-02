@@ -15,7 +15,13 @@ module.exports = (io, socket) => async (data) => {
       },
     });
 
+    const users = await User.find({}, { _id: 1, displayname: 1 });
+
     if (oldConversation) {
+      oldConversation.members = users.filter(function (user) {
+        return this.indexOf(user._id) >= 0;
+      }, oldConversation.members);
+
       socket.emit(SocketEvent.SV_SEND_CURR_CONVERSATION, oldConversation);
     } else {
       const newConversation = await Conversation.create({
@@ -25,12 +31,14 @@ module.exports = (io, socket) => async (data) => {
         to,
         members,
       });
+
+      newConversation.members = users.filter(function (user) {
+        return this.indexOf(user._id) >= 0;
+      }, newConversation.members);
       socket.emit(SocketEvent.SV_SEND_CURR_CONVERSATION, newConversation);
     }
 
     const conversations = await Conversation.find();
-
-    const users = await User.find({}, { _id: 1, displayname: 1 });
 
     conversations.map((conversation) => {
       conversation.members = users.filter(function (user) {
