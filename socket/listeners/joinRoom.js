@@ -20,7 +20,7 @@ module.exports = (io, socket) => async (data) => {
     socket.roomId = roomId;
     socket.join(roomId);
 
-    socket.emit(SocketEvent.SV_SEND_CURR_CONVERSATION, conversation);
+    // socket.emit(SocketEvent.SV_SEND_CURR_CONVERSATION, conversation);
   } catch (error) {
     console.log(error);
   }
