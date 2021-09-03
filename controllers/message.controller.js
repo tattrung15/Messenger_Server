@@ -27,7 +27,7 @@ module.exports.getMessagesByConversation = async (req, res) => {
       .json(new ResponseEntity(HttpStatus.FORBIDDEN, "Access denied"));
   }
 
-  const messages = await MessageModel.find()
+  const messages = await MessageModel.find({ conversationId })
     .limit(perPage)
     .skip(perPage * (page - 1))
     .sort({ createdAt: -1 });
