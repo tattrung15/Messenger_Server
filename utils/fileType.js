@@ -9,7 +9,7 @@ const exceptFileType = [
   "application/octet-stream",
 ];
 
-module.exports.isAllowMimeType = (fileType) => {
+module.exports.isDenyMimeType = (fileType) => {
   return exceptFileType.includes(fileType);
 };
 

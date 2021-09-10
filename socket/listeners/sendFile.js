@@ -6,7 +6,7 @@ const User = require("../../models/User.model");
 const Message = require("../../models/Message.model");
 const Conversation = require("../../models/Conversation.model");
 
-const { isAllowMimeType, randomFileName } = require("../../utils/fileType");
+const { isDenyMimeType, randomFileName } = require("../../utils/fileType");
 
 const { SocketEvent, SocketErrorMessage } = require("../constants");
 
@@ -33,7 +33,7 @@ module.exports = (io, socket) => async (data) => {
       return;
     }
 
-    if (isAllowMimeType(fileType)) {
+    if (isDenyMimeType(fileType)) {
       socket.emit(SocketEvent.ERROR, {
         message: SocketErrorMessage.SEND_FILE,
         result: "File type not allowed",
