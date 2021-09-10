@@ -7,6 +7,7 @@ const exceptFileType = [
   "application/x-exe",
   "application/x-dosexec",
   "application/octet-stream",
+  "application/x-msdos-program",
 ];
 
 module.exports.isDenyMimeType = (fileType) => {
