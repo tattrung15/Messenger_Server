@@ -24,6 +24,15 @@ const errorHandle = (err, req, res, next) => {
     error = new ResponseEntity(HttpStatus.BAD_REQUEST, message);
   }
 
+  if (err.name === "TokenExpiredError") {
+    const message = "Token expired";
+    error = new ResponseEntity(HttpStatus.UNAUTHORIZED, message);
+  }
+  if (err.name === "JsonWebTokenError") {
+    const message = err.message;
+    error = new ResponseEntity(HttpStatus.UNAUTHORIZED, message);
+  }
+
   const statusCode = error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
   const message = error.message || Message.ERROR;
 
